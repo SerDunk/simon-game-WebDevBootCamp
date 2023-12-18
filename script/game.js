@@ -27,8 +27,38 @@ function animatePress(currentColor){
         $('.'+currentColor).removeClass('pressed')
     },100)
 }
+function gameEnd(){
+    gamePattern=[]
+    userClickedPattern=[]
+    level=0
+    started=true
+}
+function checkAnswer(currentLevel){
+    if(gamePattern[currentLevel]===userClickedPattern[currentLevel]){
+        console.log("success");
+        if (userClickedPattern.length === gamePattern.length){
 
-function checkAnswer()
+            setTimeout(function () {
+                userClickedPattern = []
+                nextSequence();
+            }, 1000);
+
+        }
+
+    } else {
+        let wrongAudio=new Audio('sounds/wrong-47985.mp3')
+        wrongAudio.play()
+        $('body').addClass('game-over')
+        setTimeout(()=>{
+            $('body').removeClass('game-over')
+        },200)
+        console.log("wrong");
+        $('h1').text('Wrong! Press A Button To Start Again')
+        gameEnd()
+
+        }
+    }
+
 
 
 $('button').on('click',function(){
@@ -37,6 +67,7 @@ $('button').on('click',function(){
     userClickedPattern.push(userChosenColor)
     console.log(userClickedPattern)
     playSound()
+    checkAnswer(userClickedPattern.length-1)
 });
 
 $(document).keydown(()=>{
