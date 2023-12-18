@@ -36,7 +36,7 @@ h1{
     justify-content: space-around;
 }
 
-.tile{
+button{
     border: 5px solid black;
     border-radius: 25px;
     width: 40%;
@@ -55,4 +55,9 @@ h1{
 }
 .blue{
     background-color: blue;
+}
+
+.pressed {
+    box-shadow: 0 0 20px white;
+    background-color: grey;
 }
